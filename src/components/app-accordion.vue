@@ -2,9 +2,9 @@
   <div class="app-accordion" :class="{ 'is-open': open }">
     <div class="app-accordion__subject" @click="open = !open">
       <slot name="title"/>
-      <transition name="slide-fade">
-        <ae-icon :name="`${ open ? 'close' : 'plus'}`" fill="primary" size="2rem"/>
-      </transition>
+      <div class="app-accordion__icon">
+        <ae-icon name="plus" fill="primary" size="2rem"/>
+      </div>
     </div>
     <transition name="slide-fade">
       <div v-show="open" class="app-accordion__content">
@@ -73,5 +73,13 @@ export default {
 .slide-fade-enter, .slide-fade-leave-to {
   max-height: 0;
   opacity: 0;
+}
+.app-accordion__icon {
+  transition: transform .3s ease-in-out;
+  height: 2rem;
+  width: 2rem;
+}
+.is-open .app-accordion__icon {
+  transform: rotate(45deg);
 }
 </style>
